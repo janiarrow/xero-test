@@ -15,7 +15,7 @@ Feature: Add an ANZ bank account
     
     Examples:
     |accountName	|accountNumber|
-		|testAcc112			|1231231231231|
+		|testAc6767		|1231231231231|
 		
 	Scenario Outline: Add my ANZ loan bank account 
     Given I have logged in to my xero account
@@ -27,7 +27,7 @@ Feature: Add an ANZ bank account
     
     Examples:
     |accountName			|accountNumber|
-		|loantestacc121			|34523523423423|
+		|loantest1213781			|34523523423423|
 		
 	Scenario Outline: Add my ANZ credit card account
     Given I have logged in to my xero account
@@ -39,4 +39,4 @@ Feature: Add an ANZ bank account
     
     Examples:
     |accountName			|accountNumber|
-		|cctest8asa56				|1233				|
+		|cctes127878			|1233				|

@@ -6,10 +6,8 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 
 public class GlobalHooks {
 
@@ -17,26 +15,26 @@ public class GlobalHooks {
 	private static Properties config;
 	private static FileInputStream fileInputStream;
 
-	@Before
-	public void loadUrl() {
+	public static void loadUrl() {
 
 		loadConfig();
 		
 		String browser = config.getProperty("browser");
 		if (browser.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver", config.getProperty("chrome.webdriver"));
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("start-maximized");
+			driver = new ChromeDriver(options);
 		} else if (browser.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver", config.getProperty("firefox.webdriver"));
 			driver = new FirefoxDriver();
+			driver.manage().window().maximize();
 		}
 		
 		driver.get(config.getProperty("xero.test.suturl"));
-		driver.manage().window().maximize();
 	}
 	
-	@After
-	public void tearDown() {
+	public static void tearDown() {
 		driver.close();
 		driver.quit();
 	}
@@ -45,7 +43,7 @@ public class GlobalHooks {
 		return config;
 	}
 	
-	private void loadConfig() {
+	private static void loadConfig() {
 		config = new Properties();
 		try {
 			fileInputStream = new FileInputStream("config.properties");

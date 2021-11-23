@@ -1,6 +1,5 @@
 package stepdefs;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Properties;
@@ -8,6 +7,8 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 
 import hooks.GlobalHooks;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,6 +26,11 @@ public class AddBankAccount {
 	private LoginPage login;
 	private WebDriver driver;
 	private Properties properties;
+	
+	@Before
+	public void beforeScenario() {
+		GlobalHooks.loadUrl();
+	}
 
 	@Given("I have logged in to my xero account")
 	public void i_have_logged_in_to_my_xero_account() {
@@ -84,6 +90,11 @@ public class AddBankAccount {
 		dashboardPage.selectBankAccountsSubMenu();
 		BankAccountsPage bankAccountsPage = new BankAccountsPage(driver);
 		assertTrue(bankAccountsPage.isBankAccountDisplayed(accountName));
+	}
+	
+	@After
+	public void tear() {
+		GlobalHooks.tearDown();
 	}
 	
 	private String securityAnswer(String question) {
