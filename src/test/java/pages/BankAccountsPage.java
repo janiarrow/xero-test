@@ -1,5 +1,9 @@
 package pages;
 
+import java.util.Iterator;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,10 +18,6 @@ public class BankAccountsPage {
 	@FindBy(xpath = "//span[@data-automationid='Add Bank Account-button']")
 	WebElement addBankAccountBtn;
 	
-
-	@FindBy(xpath = "//div[contains(@class, 'bank-header')]")
-	WebElement bankName;	
-	
 	public BankAccountsPage(WebDriver webDriver) {
 		this.driver = webDriver;
 		PageFactory.initElements(driver, this);
@@ -30,10 +30,14 @@ public class BankAccountsPage {
 	}
 	
 	public boolean isBankAccountDisplayed(String accountName) {
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		wait.until(ExpectedConditions.visibilityOf(bankName));
-		return bankName.isDisplayed();
+		List<WebElement> webelements = driver.findElements(By.xpath("//div[contains(@class, 'bank-header')]"));
+		for (Iterator iterator = webelements.iterator(); iterator.hasNext();) {
+			WebElement webElement = (WebElement) iterator.next();
+			if(webElement.getText().contains(accountName)) {
+				return true;
+			}
+		}
+		return false;
 	}
-	
 	
 }
