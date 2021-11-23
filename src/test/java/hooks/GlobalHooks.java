@@ -10,12 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import pages.HomePage;
-import pages.LoginPage;
 
 public class GlobalHooks {
 
-	private WebDriver driver;
+	public static WebDriver driver;
 	private static Properties config;
 	private static FileInputStream fileInputStream;
 
@@ -43,12 +41,8 @@ public class GlobalHooks {
 		driver.quit();
 	}
 	
-	public WebDriver getDriver() {
-		return this.driver;
-	}
-	
-	public String getProperty(String key) {
-		return config.getProperty(key);
+	public Properties getProperty() {
+		return config;
 	}
 	
 	private void loadConfig() {

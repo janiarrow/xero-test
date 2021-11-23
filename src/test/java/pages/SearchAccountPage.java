@@ -1,23 +1,28 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchAccountPage {
 
-	@FindBy(xpath = "//input[@data-automationid='bankSearch--input']")
-	WebElement searchYourBank;
+	private WebDriver driver;
+	
+	@FindBy(xpath = "//div[@class='xui-contentblockitem--headings'][contains(.,'ANZ')]")
+	WebElement optionANZBank;
 
 	public SearchAccountPage(WebDriver webDriver) {
-		PageFactory.initElements(webDriver, this);
+		this.driver = webDriver;
+		PageFactory.initElements(driver, this);
 	}
 
-	public void searchForBank(String bank) {		
-		searchYourBank.sendKeys(bank);
-//		(new WebElement(By.xpath("//span[@class='xui-contentblockitem--primaryheading'][contains(.,'"+ bank +"')]"))).click();
+	public void selectANZBank() {		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOf(optionANZBank));
+		optionANZBank.click();
 	}
 
 }
