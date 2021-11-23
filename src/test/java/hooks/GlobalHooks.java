@@ -27,7 +27,7 @@ public class GlobalHooks {
 			System.setProperty("webdriver.chrome.driver", config.getProperty("chrome.webdriver"));
 			driver = new ChromeDriver();
 		} else if (browser.equals("firefox")) {
-			System.setProperty("webdriver.firefox.driver", config.getProperty("firefox.webdriver"));
+			System.setProperty("webdriver.gecko.driver", config.getProperty("firefox.webdriver"));
 			driver = new FirefoxDriver();
 		}
 		

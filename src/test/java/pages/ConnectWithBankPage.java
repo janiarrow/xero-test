@@ -26,7 +26,7 @@ public class ConnectWithBankPage {
 	}
 	
 	public void selectIGotAForm() {
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		wait.until(ExpectedConditions.visibilityOf(this.iHaveAFormBtn));
 		iHaveAFormBtn.click();
 	}

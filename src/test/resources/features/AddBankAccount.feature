@@ -11,7 +11,7 @@ Feature: Add an ANZ bank account
     When I select to add a bank account
     And add my ANZ "Everyday" bank details with <accountName> and <accountNumber>
     And select the bank to send transactions to Xero later
-    Then I can see my ANZ account <accountName> and <accountNumber> added successfully
+    Then I can see my ANZ account <accountName> has been added successfully
     
     Examples:
     |accountName	|accountNumber|
@@ -23,7 +23,7 @@ Feature: Add an ANZ bank account
     When I select to add a bank account
    	And add my ANZ "Loan" bank details with <accountName> and <accountNumber>
     And select the bank to send transactions to Xero later
-    Then I can see my ANZ account <accountName> and <accountNumber> added successfully
+    Then I can see my ANZ account <accountName> has been added successfully
     
     Examples:
     |accountName			|accountNumber|
@@ -33,10 +33,10 @@ Feature: Add an ANZ bank account
     Given I have logged in to my xero account
     And I have selected Bank Account from the menu
     When I select to add a bank account
-   	And add my "Credit Card" details with <accountName> and <last4Digits>
+   	And add my ANZ "Credit Card" bank details with <accountName> and <accountNumber>
     And select the bank to send transactions to Xero later
-    Then I can see my credit card <accountName> and <last4Digits> added successfully
+    Then I can see my ANZ account <accountName> has been added successfully
     
     Examples:
-    |accountName			|last4Digits|
-		|cctest12					|1233				|
+    |accountName			|accountNumber|
+		|cctest8asa56				|1233				|

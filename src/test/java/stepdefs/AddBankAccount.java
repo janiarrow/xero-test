@@ -1,6 +1,7 @@
 package stepdefs;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Properties;
 
@@ -76,11 +77,13 @@ public class AddBankAccount {
 		connectWithBankPage.goToDashboard();
 	}
 
-	@Then("^I can see my ANZ account (.*) and (.*) added successfully$")
-	public void i_can_see_my_ANZ_account_added_successfully(String accountName, String accountNumber) {
+	@Then("^I can see my ANZ account (.*) has been added successfully$")
+	public void i_can_see_my_ANZ_account_added_successfully(String accountName) {
 		DashboardPage dashboardPage = new DashboardPage(driver);
-//		assertEquals(accountName, dashboardPage.);
-		assertEquals(accountNumber, accountNumber);
+		dashboardPage.selectAccount();
+		dashboardPage.selectBankAccountsSubMenu();
+		BankAccountsPage bankAccountsPage = new BankAccountsPage(driver);
+		assertTrue(bankAccountsPage.isBankAccountDisplayed(accountName));
 	}
 	
 	private String securityAnswer(String question) {

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,8 @@ public class DashboardPage {
 	@FindBy(xpath = "//a[@href='https://go.xero.com/Bank/BankAccounts.aspx']")
 	WebElement accountSubMenu;	
 	
+	
+	
 
 	public DashboardPage(WebDriver webDriver) {
 		this.driver = webDriver;
@@ -32,4 +35,12 @@ public class DashboardPage {
 	public void selectBankAccountsSubMenu() {
 		accountSubMenu.click();
 	}
+	
+	public boolean isBankAccountDisplayed(String accountName) {
+		WebDriverWait wait = new WebDriverWait(driver,50);
+		WebElement bankAccountElem = driver.findElement(By.xpath("//h3[contains(.,'"+accountName+"')]"));
+		wait.until(ExpectedConditions.visibilityOf(bankAccountElem));
+		return bankAccountElem.isDisplayed();
+	}
+	
 }
